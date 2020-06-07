@@ -52,6 +52,7 @@ $this->setFrameMode(true);
 		"PAGER_TEMPLATE" => $arParams["DETAIL_PAGER_TEMPLATE"],
 		"PAGER_SHOW_ALL" => $arParams["DETAIL_PAGER_SHOW_ALL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
+		"CANONICAL" => $arParams["CANONICAL"],
 		"ELEMENT_ID" => $arResult["VARIABLES"]["ELEMENT_ID"],
 		"ELEMENT_CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"],
 		"SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
