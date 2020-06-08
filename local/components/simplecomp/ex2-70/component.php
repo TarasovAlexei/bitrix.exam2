@@ -28,11 +28,31 @@ if ($this->startResultCache(false, false))
         array('NAME', 'ACTIVE_FROM', 'ID')
     );
 	
-    while ($newsElement = $news->Fetch()) {
-        $newsIds[] = $newsElement['ID'];
-        $newsList[$newsElement['ID']] = $newsElement;
+      while ($newsElement = $news->Fetch()) {
+       
+        $arButtons = CIBlock::GetPanelButtons(
+            $newsElement["IBLOCK_ID"],
+            $newsElement["ID"],
+            0,
+            array("SECTION_BUTTONS"=>false, "SESSID"=>false)
+        );
+        $arItem["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+        $arItem["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+        $newsElement["ITEMS"] = $arItem;
+    
+
+        $newsIds[] = $newsElement["ID"];
+        $newsList[$newsElement["ID"]] = $newsElement;
     }
-	
+  
+    if ($APPLICATION->GetShowIncludeAreas()) {
+        $arButtons = CIBlock::GetPanelButtons(
+            $arParams["NEWS_IBLOCK_ID"],
+            0
+        );
+        $this->addIncludeAreaIcons(CIBlock::GetComponentMenu($APPLICATION->GetPublicShowMode(), $arButtons));
+    }
+    
 	
 	
 	
