@@ -2,7 +2,7 @@
 AddEventHandler('main', 'OnEpilog', array("ExamHandlers", "Check404Error"));
 AddEventHandler("main", "OnBeforeEventAdd", array("ExamHandlers", "OnBeforeEventAddHandler"));
 AddEventHandler("main", "OnBuildGlobalMenu", array("ExamHandlers", "OnBuildGlobalMenuHandler"));
-
+AddEventHandler("main", "OnBeforeProlog", array("ExamHandlers", "MyOnBeforePrologHandler"), 50);
 
 class ExamHandlers
 {   
@@ -74,6 +74,21 @@ class ExamHandlers
             $aGlobalMenu = ['global_menu_content' => $aGlobalMenu['global_menu_content']];
         }
     }
+
+   //[ex2-94] Супер инструмент SEO специалиста
+     function MyOnBeforePrologHandler(){
+        global $APPLICATION;
+        $cur_page = $APPLICATION->GetCurDir();
+        if(\Bitrix\Main\Loader::includeModule('iblock')){
+            $arFilter = array('IBLOCK_ID' => 6, 'NAME' => $cur_page);
+            $arSelect = array('IBLOCK_ID', 'ID', 'PROPERTY_TITLE', 'PROPERTY_DESCRIPTION');
+            $r = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
+            if($res = $r->Fetch()){
+                $APPLICATION->SetPageProperty('title', $res['PROPERTY_TITLE_VALUE']);
+                $APPLICATION->SetPageProperty('description', $res['PROPERTY_DESCRIPTION_VALUE']);
+            }
+        }
+    }  
 
 
 }
