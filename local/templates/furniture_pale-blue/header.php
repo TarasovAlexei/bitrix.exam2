@@ -138,6 +138,7 @@ $APPLICATION->IncludeComponent("bitrix:search.form", "flat", Array(
 ?>
 					</div>
 				</div>
+				<?$APPLICATION->ShowViewContent('prices');?>
 
 				<div class="information-block">
 					<div class="top"></div>
