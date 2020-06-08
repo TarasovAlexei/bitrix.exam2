@@ -16,6 +16,21 @@ if(isset($_REQUEST["F"]))
 }
 
 
+if( $USER->IsAuthorized() && CModule::includeModule("iblock") ) {
+    $arButtons = CIBlock::GetPanelButtons($arParams["PRODUCT_IBLOCK_ID"]);
+    $this->AddIncludeAreaIcons(
+        array(
+            array(
+                "ID" => "linkIb",
+                "TITLE" => "ИБ в админке",
+                "URL" => $arButtons['submenu']['element_list']['ACTION_URL'],
+                "IN_PARAMS_MENU" => true, //показать в контекстном меню
+            )
+        )
+    );
+}
+
+
 if ($this->startResultCache(false, array($cFilter)))
 {
     if (!Loader::includeModule("iblock")) 
