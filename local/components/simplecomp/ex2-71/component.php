@@ -9,7 +9,14 @@ if (!isset($arParams["CACHE_TIME"]))
 }
 
 
-if ($this->startResultCache(false, array($USER->GetGroups())))
+$cFilter = false;
+if(isset($_REQUEST["F"]))
+{
+    $cFilter = true;
+}
+
+
+if ($this->startResultCache(false, array($cFilter)))
 {
     if (!Loader::includeModule("iblock")) 
     {
@@ -17,6 +24,8 @@ if ($this->startResultCache(false, array($USER->GetGroups())))
         ShowError(GetMessage("IBLOCK_MODULE_NOT_INSTALLED"));
         return;
     }
+
+
 
     //Вытаскиваем классификатор
     $arSelect = array (
@@ -60,6 +69,19 @@ if ($this->startResultCache(false, array($USER->GetGroups())))
         "PROPERTY_".$arParams["PROPERTY_FIRMS"] => $arResult["CLASSIFIER_ID"],
         "ACTIVE" => "Y",
     );
+
+
+    if($cFilter)
+    {
+        $arFilterElems[] = array (
+                array("<=PROPERTY_PRICE" => "1700", "PROPERTY_MATERIAL" => "Дерево, ткань"),
+                array("<PROPERTY_PRICE" => "1500", "PROPERTY_MATERIAL" => "Металл, пластик"),
+                "LOGIC" => "OR"
+        );      
+        
+        $this->AbortResultCache();
+    }
+
     
      $arSortElems = array (
         'NAME' => 'ASC', 'SORT' => 'ASC'
