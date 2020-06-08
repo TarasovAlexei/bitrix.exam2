@@ -61,8 +61,8 @@ if ($this->startResultCache(false, array($USER->GetGroups())))
         "ACTIVE" => "Y",
     );
     
-    $arSortElems = array (
-        "SORT" => "ASC"
+     $arSortElems = array (
+        'NAME' => 'ASC', 'SORT' => 'ASC'
     );
 
     $arResult["ELEMENTS"] = array();
@@ -77,8 +77,16 @@ if ($this->startResultCache(false, array($USER->GetGroups())))
         {
             $arResult["CLASSIFIER"][$val]["ELEMENTS_ID"][] = $arEl["ID"];
         }
+
+        
+        $detailPage = str_replace("#SECTION_ID#", $arEl['IBLOCK_SECTION_ID'], $arParams['TEMPLATE_DETAIL_URL']);
+        $detailPage = str_replace("#ELEMENT_ID#", $arEl['ID'], $detailPage);
+        $detailPage = str_replace("#ELEMENT_CODE#", $arEl['CODE'] . '.php', $detailPage);
+       
         
         $arResult["ELEMENTS"][$arEl["ID"]] = $arEl;
+
+        $arResult["ELEMENTS"][$arEl["ID"]]["DETAIL_PAGE"] = $detailPage;
     }
         $this->SetResultCacheKeys(array("CLASSIFIER", "COUNT_CLASS"));
         $this->includeComponentTemplate();

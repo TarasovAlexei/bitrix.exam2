@@ -12,7 +12,8 @@ $APPLICATION->SetTitle("ex2-71");
 		"FIRMS_IBLOCK_ID" => "6",
 		"PRODUCT_IBLOCK_ID" => "2",
 		"PROPERTY_FIRMS_CODE" => "COMPANY",
-		"COMPONENT_TEMPLATE" => ".default"
+		"COMPONENT_TEMPLATE" => ".default",
+		"TEMPLATE_DETAIL_URL" => "/catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

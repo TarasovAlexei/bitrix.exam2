@@ -12,7 +12,7 @@ foreach($arResult["CLASSIFIER"] as $section)
 	{
 		foreach($section["ELEMENTS_ID"] as $elem)
 		{
-			?><li><?=$arResult["ELEMENTS"][$elem]["NAME"]?> - <?=$arResult["ELEMENTS"][$elem]["PROP"]["PRICE"]["VALUE"]?> - <?=$arResult["ELEMENTS"][$elem]["PROP"]["MATERIAL"]["VALUE"]?><?
+			?><li><?=$arResult["ELEMENTS"][$elem]["NAME"]?> - <?=$arResult["ELEMENTS"][$elem]["PROP"]["PRICE"]["VALUE"]?> - <?=$arResult["ELEMENTS"][$elem]["PROP"]["MATERIAL"]["VALUE"]?> (<?=$arResult["ELEMENTS"][$elem]["DETAIL_PAGE"]// ex2-81_71?>)<?
 		}
 	}
 	?>

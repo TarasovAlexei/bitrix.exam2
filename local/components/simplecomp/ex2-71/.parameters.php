@@ -14,6 +14,13 @@ $arComponentParameters = array(
             "NAME" => GetMessage("PROPERTY_FIRMS"),
             "TYPE" => "STRING",
         ),
+        "TEMPLATE_DETAIL_URL" => array( 
+            "PARENT" => "BASE", 
+            "NAME" => GetMessage("TEMPLATE_DETAIL_URL"), 
+            "TYPE" => "STRING", 
+            "MULTIPLE" => "N", 
+            "DEFAULT" => "/catalog_exam/#SECTION_ID#/#ELEMENT_CODE#", 
+		),
 		"CACHE_TIME"  =>  array("DEFAULT"=>36000000),
 		"CACHE_FILTER" => array(
 			"PARENT" => "CACHE_SETTINGS",
