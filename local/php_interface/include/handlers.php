@@ -22,8 +22,8 @@ class ExamHandlers
             "AUDIT_TYPE_ID" => "MY_TYPE_LOG",
             "MODULE_ID" => "main",
             "ITEM_ID" => $arFields['ID'],
-            "DESCRIPTION" => "Замена данных в отсылаемом письме – " . $arFields['AUTHOR'],
-            );
+            "DESCRIPTION" => "Замена данных в отсылаемом письме – " . $arFields['AUTHOR']
+            ));
         }
     }
 
@@ -75,20 +75,20 @@ class ExamHandlers
         }
     }
 
-   //[ex2-94] Супер инструмент SEO специалиста
-     function MyOnBeforePrologHandler(){
+    // ex2-94
+    function MyOnBeforePrologHandler(){
         global $APPLICATION;
         $cur_page = $APPLICATION->GetCurDir();
         if(\Bitrix\Main\Loader::includeModule('iblock')){
-            $arFilter = array('IBLOCK_ID' => 6, 'NAME' => $cur_page);
+            $arFilter = array('IBLOCK_ID' => IBLOCK_META, 'NAME' => $cur_page);
             $arSelect = array('IBLOCK_ID', 'ID', 'PROPERTY_TITLE', 'PROPERTY_DESCRIPTION');
             $r = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
             if($res = $r->Fetch()){
                 $APPLICATION->SetPageProperty('title', $res['PROPERTY_TITLE_VALUE']);
-                $APPLICATION->SetPageProperty('description', $res['PROPERTY_DESCRIPTION_VALUE']);
+                $APPLICATION->SetPageProperty('description', $res['PROPERTY_DESC_VALUE']);
             }
         }
-    }  
+    }
 
 
 }
