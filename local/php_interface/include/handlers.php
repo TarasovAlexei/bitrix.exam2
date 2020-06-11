@@ -3,6 +3,8 @@ AddEventHandler('main', 'OnEpilog', array("ExamHandlers", "Check404Error"));
 AddEventHandler("main", "OnBeforeEventAdd", array("ExamHandlers", "OnBeforeEventAddHandler"));
 AddEventHandler("main", "OnBuildGlobalMenu", array("ExamHandlers", "OnBuildGlobalMenuHandler"));
 AddEventHandler("main", "OnBeforeProlog", array("ExamHandlers", "MyOnBeforePrologHandler"), 50);
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", Array("ExamHandlers", "OnBeforeIBlockElementUpdateHandler"));
+
 
 class ExamHandlers
 {   
@@ -90,6 +92,22 @@ class ExamHandlers
         }
     }
 
+    function OnBeforeIBlockElementUpdateHandler(&$arFields)
+    {
+        // ех2-75
+        if($arFields["IBLOCK_ID"] == 1)
+        {
+            if(strpos($arFields["PREVIEW_TEXT"], "калейдоскоп" ) !== false)
+            {   
+                $arFields["PREVIEW_TEXT"] = str_replace("калейдоскоп", "[...]", $arFields["PREVIEW_TEXT"]);
+                
+
+                global $APPLICATION;
+                $APPLICATION->throwException("Мы не используем слово калейдоскоп в анонсах новостей!");
+                return false;
+            }
+        }
+    }
 
 }
 
