@@ -15,6 +15,17 @@ if (!$USER->IsAuthorized())
 }
 
 
+$this->AddIncludeAreaIcons(
+    array(
+        array(
+            "TITLE" => "Hello World!",
+            "URL" => $APPLICATION->GetCurPage(true)."?hello=world",
+            "IN_PARAMS_MENU" => false, 
+        )
+    )
+);
+
+
 if ($this->startResultCache(false, false)) 
 {	
 	
