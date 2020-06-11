@@ -30,7 +30,7 @@ class ExamHandlers
     // ex2-94
 	function Check404Error(){
 		if (defined('ERROR_404') && ERROR_404 == 'Y') {
-
+        global $APPLICATION;
 		CEventLog::Add(
 			array(
 				"SEVERITY" 		=> "INFO",

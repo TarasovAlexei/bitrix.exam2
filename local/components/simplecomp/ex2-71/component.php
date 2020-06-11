@@ -93,7 +93,6 @@ if ($this->startResultCache(false, array($cFilter)))
                 array("<PROPERTY_PRICE" => "1500", "PROPERTY_MATERIAL" => "Металл, пластик"),
                 "LOGIC" => "OR"
         );      
-        
         $this->AbortResultCache();
     }
 

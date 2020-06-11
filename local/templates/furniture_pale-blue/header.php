@@ -5,7 +5,8 @@ IncludeTemplateLangFile(__FILE__);
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
-<?$APPLICATION->ShowProperty('canonical'); ?>
+<link rel="canonical" href="<?$APPLICATION->ShowProperty('canonical'); ?>">
+
 <meta property= "specialdate" content="<?$APPLICATION->ShowProperty('specialdate'); ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <?$APPLICATION->ShowHead();?>
